@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiragana quiz</title>
+    <!-- Include HTMX library -->
+    <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
+    <style>
+        /* CSS to center the #result div */
+        #result {
+            position: fixed;
+            font-size: 5em;
+            width: 25%;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #000;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Button to trigger AJAX request -->
+    <button id="btn" hx-get="/api/randomHiragana" hx-target="#result" hx-swap="innerHTML">Next</button>
+
+    <!-- Container to display fetched data -->
+    <div id="result">...</div>
+
+    <script>
+        function handleKeyPress(event) {
+            if (event.keyCode === 32) {
+                event.preventDefault();
+                document.getElementById("btn").click();
+            }
+        }
+
+        document.body.addEventListener("keydown", handleKeyPress);
+    </script>
+</body>
+</html>
