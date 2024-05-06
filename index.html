@@ -24,7 +24,7 @@
 
 <body>
     <!-- Button to trigger AJAX request -->
-    <button id="btn" hx-trigger="click" hx-get="javascript:void(0);" hx-trigger="click" hx-target="#result" hx-swap="innerHTML" onclick="showRandomHiragana()">Next</button>
+    <button id="btn" hx-trigger="click" hx-get="javascript:void(0);" hx-trigger="click" hx-target="#result" hx-swap="innerHTML" onclick="getNextHiragana()">Next</button>
 
     <!-- Container to display fetched data -->
     <div id="result">...</div>
@@ -87,7 +87,7 @@
             }
             const nextHiragana = shuffledHiragana[currentIndex];
             currentIndex++;
-            return nextHiragana;
+            document.getElementById("result").innerHTML = nextHiragana;
         }
     </script>
 </body>
