@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiragana quiz</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Kanaquiz</title>
     <style>
         #moji {
             position: fixed;
@@ -32,30 +32,30 @@
 </head>
 
 <body>
-    <button id="moji-btn" onclick="getNextMoji()">Next</button>
+    <button id='moji-btn' onclick='getNextMoji()'>Next</button>
 
-    <button id="set-btn" onclick="switchSet()">Switch</button>
-    <button id="show-yomikata-btn" style="display: none" onclick="showYomikata()"></button>
+    <button id='set-btn' onclick='switchSet()'>Switch</button>
+    <button id='show-yomikata-btn' style='display: none' onclick='showYomikata()'></button>
 
-    <span id="set">hiragana</span>
+    <span id='set'>hiragana</span>
 
-    <div id="moji">...</div>
-    <div id="yomikata"></div>
+    <div id='moji'>...</div>
+    <div id='yomikata'></div>
 
     <script>
         function handleKeyPress(event) {
             if (event.keyCode === 32) {
                 event.preventDefault();
                 if (currentMojiSet === kanjiList && !yomikataRevealed && nextMoji !== '') {
-                    document.getElementById("show-yomikata-btn").click();
+                    document.getElementById('show-yomikata-btn').click();
                 }
                 else {
-                    document.getElementById("moji-btn").click();
+                    document.getElementById('moji-btn').click();
                 }
             }
         }
 
-        document.body.addEventListener("keydown", handleKeyPress);
+        document.body.addEventListener('keydown', handleKeyPress);
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -66,135 +66,166 @@
         }
 
         const hiraganaList = [
-            "あ", "い", "う", "え", "お",
-            "か", "き", "く", "け", "こ",
-            "さ", "し", "す", "せ", "そ",
-            "た", "ち", "つ", "て", "と",
-            "な", "に", "ぬ", "ね", "の",
-            "は", "ひ", "ふ", "へ", "ほ",
-            "ま", "み", "む", "め", "も",
-            "や", "ゆ", "よ",
-            "ら", "り", "る", "れ", "ろ",
-            "わ", "を",
-            "ん",
-            "が", "ぎ", "ぐ", "げ", "ご",
-            "ざ", "じ", "ず", "ぜ", "ぞ",
-            "だ", "ぢ", "づ", "で", "ど",
-            "ば", "び", "ぶ", "べ", "ぼ",
-            "ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
-            "きゃ", "きゅ", "きょ",
-            "しゃ", "しゅ", "しょ",
-            "ちゃ", "ちゅ", "ちょ",
-            "にゃ", "にゅ", "にょ",
-            "ひゃ", "ひゅ", "ひょ",
-            "みゃ", "みゅ", "みょ",
-            "りゃ", "りゅ", "りょ",
-            "ぎゃ", "ぎゅ", "ぎょ",
-            "じゃ", "じゅ", "じょ",
-            "びゃ", "びゅ", "びょ",
-            "ぴゃ", "ぴゅ", "ぴょ"
+            'あ', 'い', 'う', 'え', 'お',
+            'か', 'き', 'く', 'け', 'こ',
+            'さ', 'し', 'す', 'せ', 'そ',
+            'た', 'ち', 'つ', 'て', 'と',
+            'な', 'に', 'ぬ', 'ね', 'の',
+            'は', 'ひ', 'ふ', 'へ', 'ほ',
+            'ま', 'み', 'む', 'め', 'も',
+            'や', 'ゆ', 'よ',
+            'ら', 'り', 'る', 'れ', 'ろ',
+            'わ', 'を',
+            'ん',
+            'が', 'ぎ', 'ぐ', 'げ', 'ご',
+            'ざ', 'じ', 'ず', 'ぜ', 'ぞ',
+            'だ', 'ぢ', 'づ', 'で', 'ど',
+            'ば', 'び', 'ぶ', 'べ', 'ぼ',
+            'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ',
+            'きゃ', 'きゅ', 'きょ',
+            'しゃ', 'しゅ', 'しょ',
+            'ちゃ', 'ちゅ', 'ちょ',
+            'にゃ', 'にゅ', 'にょ',
+            'ひゃ', 'ひゅ', 'ひょ',
+            'みゃ', 'みゅ', 'みょ',
+            'りゃ', 'りゅ', 'りょ',
+            'ぎゃ', 'ぎゅ', 'ぎょ',
+            'じゃ', 'じゅ', 'じょ',
+            'びゃ', 'びゅ', 'びょ',
+            'ぴゃ', 'ぴゅ', 'ぴょ'
         ];
 
+        const katakanaList = [
+            'ア', 'イ', 'ウ', 'エ', 'オ',
+            'カ', 'キ', 'ク', 'ケ', 'コ',
+            'サ', 'シ', 'ス', 'セ', 'ソ',
+            'タ', 'チ', 'ツ', 'テ', 'ト',
+            'ナ', 'ニ', 'ヌ', 'ネ', 'ノ',
+            'ハ', 'ヒ', 'フ', 'ヘ', 'ホ',
+            'マ', 'ミ', 'ム', 'メ', 'モ',
+            'ヤ', 'ユ', 'ヨ',
+            'ラ', 'リ', 'ル', 'レ', 'ロ',
+            'ワ', 'ヲ',
+            'ン',
+            'ガ', 'ギ', 'グ', 'ゲ', 'ゴ',
+            'ザ', 'ジ', 'ズ', 'ゼ', 'ゾ',
+            'ダ', 'ヂ', 'ヅ', 'デ', 'ド',
+            'バ', 'ビ', 'ブ', 'ベ', 'ボ',
+            'パ', 'ピ', 'プ', 'ペ', 'ポ',
+            'キャ', 'キュ', 'キョ',
+            'シャ', 'シュ', 'ショ',
+            'チャ', 'チュ', 'チョ',
+            'ニャ', 'ニュ', 'ニョ',
+            'ヒャ', 'ヒュ', 'ヒョ',
+            'ミャ', 'ミュ', 'ミョ',
+            'リャ', 'リュ', 'リョ',
+            'ギャ', 'ギュ', 'ギョ',
+            'ジャ', 'ジュ', 'ジョ',
+            'ビャ', 'ビュ', 'ビョ',
+            'ピャ', 'ピュ', 'ピョ'
+        ];
+
+
         const kanjiList = [
-            { id: 1, kanji: "一", hiragana: "いち" },
-            { id: 2, kanji: "二", hiragana: "に" },
-            { id: 3, kanji: "三", hiragana: "さん" },
-            { id: 4, kanji: "四", hiragana: "し" },
-            { id: 5, kanji: "五", hiragana: "ご" },
-            { id: 6, kanji: "六", hiragana: "ろく" },
-            { id: 7, kanji: "七", hiragana: "しち" },
-            { id: 8, kanji: "八", hiragana: "はち" },
-            { id: 9, kanji: "九", hiragana: "きゅう" },
-            { id: 10, kanji: "十", hiragana: "じゅう" },
-            { id: 11, kanji: "百", hiragana: "ひゃく" },
-            { id: 12, kanji: "千", hiragana: "せん" },
-            { id: 13, kanji: "万", hiragana: "まん" },
-            { id: 14, kanji: "円", hiragana: "えん" },
-            { id: 15, kanji: "口", hiragana: "くち" },
-            { id: 16, kanji: "目", hiragana: "め" },
-            { id: 17, kanji: "耳", hiragana: "みみ" },
-            { id: 18, kanji: "手", hiragana: "て" },
-            { id: 19, kanji: "足", hiragana: "あし" },
-            { id: 20, kanji: "力", hiragana: "ちから" },
-            { id: 21, kanji: "男", hiragana: "おとこ" },
-            { id: 22, kanji: "女", hiragana: "おんな" },
-            { id: 23, kanji: "子", hiragana: "こ" },
-            { id: 24, kanji: "学", hiragana: "がく" },
-            { id: 25, kanji: "校", hiragana: "こう" },
-            { id: 26, kanji: "先", hiragana: "せん" },
-            { id: 27, kanji: "生", hiragana: "せい" },
-            { id: 28, kanji: "何", hiragana: "なに" },
-            { id: 29, kanji: "今", hiragana: "いま" },
-            { id: 30, kanji: "時", hiragana: "とき" },
-            { id: 31, kanji: "日", hiragana: "にち" },
-            { id: 32, kanji: "月", hiragana: "げつ" },
-            { id: 33, kanji: "火", hiragana: "か" },
-            { id: 34, kanji: "水", hiragana: "すい" },
-            { id: 35, kanji: "木", hiragana: "もく" },
-            { id: 36, kanji: "金", hiragana: "きん" },
-            { id: 37, kanji: "土", hiragana: "ど" },
-            { id: 38, kanji: "山", hiragana: "やま" },
-            { id: 39, kanji: "川", hiragana: "かわ" },
-            { id: 40, kanji: "田", hiragana: "た" },
-            { id: 41, kanji: "天", hiragana: "てん" },
-            { id: 42, kanji: "気", hiragana: "き" },
-            { id: 43, kanji: "空", hiragana: "そら" },
-            { id: 44, kanji: "雨", hiragana: "あめ" },
-            { id: 45, kanji: "電", hiragana: "でん" },
-            { id: 46, kanji: "車", hiragana: "くるま" },
-            { id: 47, kanji: "駅", hiragana: "えき" },
-            { id: 48, kanji: "道", hiragana: "みち" },
-            { id: 49, kanji: "話", hiragana: "はなし" },
-            { id: 50, kanji: "語", hiragana: "ご" },
-            { id: 51, kanji: "読", hiragana: "よ(む)" },
-            { id: 52, kanji: "書", hiragana: "か(く)" },
-            { id: 53, kanji: "聞", hiragana: "き(く)" },
-            { id: 54, kanji: "見", hiragana: "み(る)" },
-            { id: 55, kanji: "買", hiragana: "か(う)" },
-            { id: 56, kanji: "売", hiragana: "う(る)" },
-            { id: 57, kanji: "食", hiragana: "た(べる)" },
-            { id: 58, kanji: "飲", hiragana: "の(む)" },
-            { id: 59, kanji: "行", hiragana: "い(く)" },
-            { id: 60, kanji: "来", hiragana: "く(る)" },
-            { id: 61, kanji: "帰", hiragana: "かえ(る)" },
-            { id: 62, kanji: "歩", hiragana: "ある(く)" },
-            { id: 63, kanji: "友", hiragana: "とも" },
-            { id: 64, kanji: "父", hiragana: "ちち" },
-            { id: 65, kanji: "母", hiragana: "はは" },
-            { id: 66, kanji: "兄", hiragana: "あに" },
-            { id: 67, kanji: "姉", hiragana: "あね" },
-            { id: 68, kanji: "弟", hiragana: "おとうと" },
-            { id: 69, kanji: "妹", hiragana: "いもうと" },
-            { id: 70, kanji: "家", hiragana: "いえ" },
-            { id: 71, kanji: "族", hiragana: "ぞく" },
-            { id: 72, kanji: "自", hiragana: "じ" },
-            { id: 73, kanji: "転", hiragana: "てん" },
-            { id: 74, kanji: "動", hiragana: "どう" },
-            { id: 75, kanji: "走", hiragana: "はし(る)" },
-            { id: 76, kanji: "起", hiragana: "お(きる)" },
-            { id: 77, kanji: "寝", hiragana: "ね(る)" },
-            { id: 78, kanji: "朝", hiragana: "あさ" },
-            { id: 79, kanji: "昼", hiragana: "ひる" },
-            { id: 80, kanji: "夜", hiragana: "よる" },
-            { id: 81, kanji: "夕", hiragana: "ゆう" },
-            { id: 82, kanji: "晩", hiragana: "ばん" },
-            { id: 83, kanji: "早", hiragana: "はや(い)" },
-            { id: 84, kanji: "午", hiragana: "ご" },
-            { id: 85, kanji: "前", hiragana: "まえ" },
-            { id: 86, kanji: "後", hiragana: "あと" },
-            { id: 87, kanji: "間", hiragana: "あいだ" },
-            { id: 88, kanji: "分", hiragana: "ふん" },
-            { id: 89, kanji: "秒", hiragana: "びょう" },
-            { id: 90, kanji: "週", hiragana: "しゅう" },
-            { id: 91, kanji: "年", hiragana: "ねん" },
-            { id: 92, kanji: "春", hiragana: "はる" },
-            { id: 93, kanji: "夏", hiragana: "なつ" },
-            { id: 94, kanji: "秋", hiragana: "あき" },
-            { id: 95, kanji: "冬", hiragana: "ふゆ" },
-            { id: 96, kanji: "北", hiragana: "きた" },
-            { id: 97, kanji: "南", hiragana: "みなみ" },
-            { id: 98, kanji: "東", hiragana: "ひがし" },
-            { id: 99, kanji: "西", hiragana: "にし" }
+            { id: 1, kanji: '一', hiragana: 'いち' },
+            { id: 2, kanji: '二', hiragana: 'に' },
+            { id: 3, kanji: '三', hiragana: 'さん' },
+            { id: 4, kanji: '四', hiragana: 'し' },
+            { id: 5, kanji: '五', hiragana: 'ご' },
+            { id: 6, kanji: '六', hiragana: 'ろく' },
+            { id: 7, kanji: '七', hiragana: 'しち' },
+            { id: 8, kanji: '八', hiragana: 'はち' },
+            { id: 9, kanji: '九', hiragana: 'きゅう' },
+            { id: 10, kanji: '十', hiragana: 'じゅう' },
+            { id: 11, kanji: '百', hiragana: 'ひゃく' },
+            { id: 12, kanji: '千', hiragana: 'せん' },
+            { id: 13, kanji: '万', hiragana: 'まん' },
+            { id: 14, kanji: '円', hiragana: 'えん' },
+            { id: 15, kanji: '口', hiragana: 'くち' },
+            { id: 16, kanji: '目', hiragana: 'め' },
+            { id: 17, kanji: '耳', hiragana: 'みみ' },
+            { id: 18, kanji: '手', hiragana: 'て' },
+            { id: 19, kanji: '足', hiragana: 'あし' },
+            { id: 20, kanji: '力', hiragana: 'ちから' },
+            { id: 21, kanji: '男', hiragana: 'おとこ' },
+            { id: 22, kanji: '女', hiragana: 'おんな' },
+            { id: 23, kanji: '子', hiragana: 'こ' },
+            { id: 24, kanji: '学', hiragana: 'がく' },
+            { id: 25, kanji: '校', hiragana: 'こう' },
+            { id: 26, kanji: '先', hiragana: 'せん' },
+            { id: 27, kanji: '生', hiragana: 'せい' },
+            { id: 28, kanji: '何', hiragana: 'なに' },
+            { id: 29, kanji: '今', hiragana: 'いま' },
+            { id: 30, kanji: '時', hiragana: 'とき' },
+            { id: 31, kanji: '日', hiragana: 'にち' },
+            { id: 32, kanji: '月', hiragana: 'げつ' },
+            { id: 33, kanji: '火', hiragana: 'か' },
+            { id: 34, kanji: '水', hiragana: 'すい' },
+            { id: 35, kanji: '木', hiragana: 'もく' },
+            { id: 36, kanji: '金', hiragana: 'きん' },
+            { id: 37, kanji: '土', hiragana: 'ど' },
+            { id: 38, kanji: '山', hiragana: 'やま' },
+            { id: 39, kanji: '川', hiragana: 'かわ' },
+            { id: 40, kanji: '田', hiragana: 'た' },
+            { id: 41, kanji: '天', hiragana: 'てん' },
+            { id: 42, kanji: '気', hiragana: 'き' },
+            { id: 43, kanji: '空', hiragana: 'そら' },
+            { id: 44, kanji: '雨', hiragana: 'あめ' },
+            { id: 45, kanji: '電', hiragana: 'でん' },
+            { id: 46, kanji: '車', hiragana: 'くるま' },
+            { id: 47, kanji: '駅', hiragana: 'えき' },
+            { id: 48, kanji: '道', hiragana: 'みち' },
+            { id: 49, kanji: '話', hiragana: 'はなし' },
+            { id: 50, kanji: '語', hiragana: 'ご' },
+            { id: 51, kanji: '読', hiragana: 'よ(む)' },
+            { id: 52, kanji: '書', hiragana: 'か(く)' },
+            { id: 53, kanji: '聞', hiragana: 'き(く)' },
+            { id: 54, kanji: '見', hiragana: 'み(る)' },
+            { id: 55, kanji: '買', hiragana: 'か(う)' },
+            { id: 56, kanji: '売', hiragana: 'う(る)' },
+            { id: 57, kanji: '食', hiragana: 'た(べる)' },
+            { id: 58, kanji: '飲', hiragana: 'の(む)' },
+            { id: 59, kanji: '行', hiragana: 'い(く)' },
+            { id: 60, kanji: '来', hiragana: 'く(る)' },
+            { id: 61, kanji: '帰', hiragana: 'かえ(る)' },
+            { id: 62, kanji: '歩', hiragana: 'ある(く)' },
+            { id: 63, kanji: '友', hiragana: 'とも' },
+            { id: 64, kanji: '父', hiragana: 'ちち' },
+            { id: 65, kanji: '母', hiragana: 'はは' },
+            { id: 66, kanji: '兄', hiragana: 'あに' },
+            { id: 67, kanji: '姉', hiragana: 'あね' },
+            { id: 68, kanji: '弟', hiragana: 'おとうと' },
+            { id: 69, kanji: '妹', hiragana: 'いもうと' },
+            { id: 70, kanji: '家', hiragana: 'いえ' },
+            { id: 71, kanji: '族', hiragana: 'ぞく' },
+            { id: 72, kanji: '自', hiragana: 'じ' },
+            { id: 73, kanji: '転', hiragana: 'てん' },
+            { id: 74, kanji: '動', hiragana: 'どう' },
+            { id: 75, kanji: '走', hiragana: 'はし(る)' },
+            { id: 76, kanji: '起', hiragana: 'お(きる)' },
+            { id: 77, kanji: '寝', hiragana: 'ね(る)' },
+            { id: 78, kanji: '朝', hiragana: 'あさ' },
+            { id: 79, kanji: '昼', hiragana: 'ひる' },
+            { id: 80, kanji: '夜', hiragana: 'よる' },
+            { id: 81, kanji: '夕', hiragana: 'ゆう' },
+            { id: 82, kanji: '晩', hiragana: 'ばん' },
+            { id: 83, kanji: '早', hiragana: 'はや(い)' },
+            { id: 84, kanji: '午', hiragana: 'ご' },
+            { id: 85, kanji: '前', hiragana: 'まえ' },
+            { id: 86, kanji: '後', hiragana: 'あと' },
+            { id: 87, kanji: '間', hiragana: 'あいだ' },
+            { id: 88, kanji: '分', hiragana: 'ふん' },
+            { id: 89, kanji: '秒', hiragana: 'びょう' },
+            { id: 90, kanji: '週', hiragana: 'しゅう' },
+            { id: 91, kanji: '年', hiragana: 'ねん' },
+            { id: 92, kanji: '春', hiragana: 'はる' },
+            { id: 93, kanji: '夏', hiragana: 'なつ' },
+            { id: 94, kanji: '秋', hiragana: 'あき' },
+            { id: 95, kanji: '冬', hiragana: 'ふゆ' },
+            { id: 96, kanji: '北', hiragana: 'きた' },
+            { id: 97, kanji: '南', hiragana: 'みなみ' },
+            { id: 98, kanji: '東', hiragana: 'ひがし' },
+            { id: 99, kanji: '西', hiragana: 'にし' }
         ];
 
         let currentMojiSet = hiraganaList;
@@ -202,11 +233,11 @@
         let shuffledList = shuffleArray([...currentMojiSet]);
         let currentMojiIndex = 0;
 
-        let setList = ["hiragana", "kanji"];
+        let setList = ['hiragana', 'katakana', 'kanji'];
         let currentSetIndex = 0;
 
-        let nextMoji = "";
-        let nextYomikata = "";
+        let nextMoji = '';
+        let nextYomikata = '';
 
         let yomikataRevealed = false;
 
@@ -215,9 +246,9 @@
                 shuffledList = shuffleArray([...currentMojiSet]);
                 currentMojiIndex = 0;
             }
-            if (currentMojiSet === hiraganaList) {
+            if (currentMojiSet === hiraganaList || currentMojiSet === katakanaList) {
                 nextMoji = shuffledList[currentMojiIndex];
-                nextYomikata = "";
+                nextYomikata = '';
             }
             else {
                 nextMoji = shuffledList[currentMojiIndex].kanji;
@@ -225,30 +256,35 @@
             }
 
             currentMojiIndex++;
-            document.getElementById("moji").innerHTML = nextMoji;
-            document.getElementById("yomikata").innerHTML = '';
+            document.getElementById('moji').innerHTML = nextMoji;
+            document.getElementById('yomikata').innerHTML = '';
             yomikataRevealed = false;
         }
 
         function showYomikata() {
-            document.getElementById("yomikata").innerHTML = nextYomikata;
+            document.getElementById('yomikata').innerHTML = nextYomikata;
             yomikataRevealed = true;
         }
 
         function switchSet() {
             currentSetIndex = (currentSetIndex + 1) % setList.length;
-            document.getElementById("set").innerHTML = setList[currentSetIndex];
+            document.getElementById('set').innerHTML = setList[currentSetIndex];
 
             if (setList[currentSetIndex] === 'hiragana') {
                 currentMojiSet = hiraganaList;
+            }
+            else if (setList[currentSetIndex] === 'katakana') {
+                currentMojiSet = katakanaList;
             }
             else {
                 currentMojiSet = kanjiList;
             }
             shuffledList = shuffleArray([...currentMojiSet]);
             currentMojiIndex = 0;
-            document.getElementById("moji").innerHTML = '...';
-            document.getElementById("yomikata").innerHTML = '';
+            document.getElementById('moji').innerHTML = '...';
+            document.getElementById('yomikata').innerHTML = '';
+            nextMoji = '';
+            nextYomikata = '';
         }
     </script>
 </body>
