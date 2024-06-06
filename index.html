@@ -9,7 +9,8 @@
         #moji {
             position: fixed;
             font-size: 5em;
-            min-width: 25%;
+            min-width: 2.5em;
+            min-height: 1em;
             width: fit-content;
             text-align: center;
             top: 50%;
@@ -25,7 +26,7 @@
             font-size: 2em;
             width: 75%;
             text-align: center;
-            top: 65%;
+            top: 70%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -33,12 +34,11 @@
 </head>
 
 <body>
-    <button id='moji-btn' onclick='getNextMoji()'>Next</button>
-
-    <button id='set-btn' onclick='switchSet()'>Switch</button>
+    <button id='moji-btn' onclick='getNextMoji()' style="display: none"></button>
     <button id='show-yomikata-btn' style='display: none' onclick='showYomikata()'></button>
     <button id='show-english-btn' style='display: none' onclick='showEnglish()'></button>
 
+    <button id='set-btn' onclick='switchSet()'>Switch</button>
     <span id='set'>hiragana</span>
 
     <div id='moji'>...</div>
