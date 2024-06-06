@@ -9,7 +9,8 @@
         #moji {
             position: fixed;
             font-size: 5em;
-            width: 25%;
+            min-width: 25%;
+            width: fit-content;
             text-align: center;
             top: 50%;
             left: 50%;
@@ -125,6 +126,26 @@
             'ピャ', 'ピュ', 'ピョ'
         ];
 
+        const katakanaWords = [
+            'アイスクリーム', 'バス', 'コンピュータ', 'デパート', 'エレベーター',
+            'カメラ', 'ホテル', 'レストラン', 'タクシー', 'パン',
+            'ピザ', 'コーヒー', 'テレビ', 'ラジオ', 'ニュース',
+            'インターネット', 'ゲーム', 'スマートフォン', 'テニス', 'サッカー',
+            'バレーボール', 'バスケットボール', 'ラグビー', 'ゴルフ', 'スキー',
+            'サーフィン', 'スノーボード', 'クラシック', 'ジャズ', 'ロック',
+            'ポップス', 'ヒップホップ', 'ラップ', 'ビジネス', 'マーケティング',
+            'セールス', 'マネジメント', 'リーダーシップ', 'プロジェクト', 'コミュニケーション',
+            'プレゼンテーション', 'チームワーク', 'コラボレーション', 'クリエイティブ', 'デザイン',
+            'アート', 'ファッション', 'モデル', 'ブランド', 'ショッピング',
+            'メディア', 'エンターテインメント', 'シネマ', 'ドラマ', 'アニメ',
+            'マンガ', 'ゲーム', 'スポーツ', 'トレーニング', 'ダンス',
+            'ミュージック', 'バンド', 'コンサート', 'フェスティバル', 'イベント',
+            'カフェ', 'バー', 'レストラン', 'ファーストフード', 'スーパーマーケット',
+            'デパート', 'コンビニエンスストア', 'ドラッグストア', 'ショッピングモール', 'パーク',
+            'ビーチ', 'マウンテン', 'リゾート', 'ホテル', 'スパ',
+            'リラックス', 'リフレッシュ', 'バケーション', 'トラベル', 'ツアー'
+        ];
+
 
         const kanjiList = [
             { id: 1, kanji: '一', hiragana: 'いち' },
@@ -233,7 +254,7 @@
         let shuffledList = shuffleArray([...currentMojiSet]);
         let currentMojiIndex = 0;
 
-        let setList = ['hiragana', 'katakana', 'kanji'];
+        let setList = ['hiragana', 'katakana', 'kanji', 'katakana (words)'];
         let currentSetIndex = 0;
 
         let nextMoji = '';
@@ -246,7 +267,7 @@
                 shuffledList = shuffleArray([...currentMojiSet]);
                 currentMojiIndex = 0;
             }
-            if (currentMojiSet === hiraganaList || currentMojiSet === katakanaList) {
+            if (currentMojiSet === hiraganaList || currentMojiSet === katakanaList || currentMojiSet === katakanaWords) {
                 nextMoji = shuffledList[currentMojiIndex];
                 nextYomikata = '';
             }
@@ -275,6 +296,9 @@
             }
             else if (setList[currentSetIndex] === 'katakana') {
                 currentMojiSet = katakanaList;
+            }
+            else if (setList[currentSetIndex] === 'katakana (words)') {
+                currentMojiSet = katakanaWords;
             }
             else {
                 currentMojiSet = kanjiList;
