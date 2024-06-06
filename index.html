@@ -46,21 +46,30 @@
 
     <script>
         function handleKeyPress(event) {
-            if (event.keyCode === 32) {
+            if (event.keyCode === 32 || event.click) {
                 event.preventDefault();
-                if (currentMojiSet === kanjiList && !yomikataRevealed && nextMoji !== '') {
-                    document.getElementById('show-yomikata-btn').click();
-                }
-                else if(currentMojiSet === kanjiListHard && !yomikataRevealed && nextMoji !== ''){
-                    document.getElementById('show-yomikata-btn').click();
-                    document.getElementById('show-english-btn').click();
-                }
-                else {
-                    document.getElementById('moji-btn').click();
-                }
+                clickButton();
             }
         }
 
+        function handleClick() {
+            clickButton();
+        }
+
+        function clickButton() {
+            if (currentMojiSet === kanjiList && !yomikataRevealed && nextMoji !== '') {
+                document.getElementById('show-yomikata-btn').click();
+            }
+            else if (currentMojiSet === kanjiListHard && !yomikataRevealed && nextMoji !== '') {
+                document.getElementById('show-yomikata-btn').click();
+                document.getElementById('show-english-btn').click();
+            }
+            else {
+                document.getElementById('moji-btn').click();
+            }
+        }
+
+        document.getElementById('moji').addEventListener('click', handleClick);
         document.body.addEventListener('keydown', handleKeyPress);
 
         function shuffleArray(array) {
