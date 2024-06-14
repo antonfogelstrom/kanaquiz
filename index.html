@@ -8,10 +8,10 @@
     <style>
         #moji {
             position: fixed;
-            font-size: 5em;
+            font-size: 3em;
             min-width: 2.5em;
-            min-height: 1em;
-            width: fit-content;
+            min-height: 1.5em;
+            width: 100%;
             text-align: center;
             top: 50%;
             left: 50%;
@@ -34,12 +34,17 @@
 </head>
 
 <body>
-    <button id='moji-btn' onclick='getNextMoji()' style="display: none"></button>
+    <button id='moji-btn' onclick='getNextMoji()' style='display: none'></button>
     <button id='show-yomikata-btn' style='display: none' onclick='showYomikata()'></button>
     <button id='show-english-btn' style='display: none' onclick='showEnglish()'></button>
 
-    <button id='set-btn' onclick='switchSet()'>Switch</button>
-    <span id='set'>hiragana</span>
+    <select name='set' id='set' onchange='switchSet()'>
+        <option value='hiragana'>hiragana</option>
+        <option value='katakana'>katakana</option>
+        <option value='kanji'>kanji</option>
+        <option value='katakana (words)'>katakana (words)</option>
+        <option value='kanji (hard)'>kanji (hard)</option>
+      </select>
 
     <div id='moji'>...</div>
     <div id='yomikata'></div>
@@ -370,9 +375,6 @@
         let shuffledList = shuffleArray([...currentMojiSet]);
         let currentMojiIndex = 0;
 
-        let setList = ['hiragana', 'katakana', 'kanji', 'katakana (words)', 'kanji (hard)'];
-        let currentSetIndex = 0;
-
         let nextMoji = '';
         let nextYomikata = '';
         let nextEnglish = '';
@@ -410,26 +412,24 @@
         }
 
         function switchSet() {
-            currentSetIndex = (currentSetIndex + 1) % setList.length;
-            document.getElementById('set').innerHTML = setList[currentSetIndex];
+            let current = document.getElementById('set').value;
 
-            if (setList[currentSetIndex] === 'hiragana') {
+            if (current === 'hiragana') {
                 currentMojiSet = hiraganaList;
             }
-            else if (setList[currentSetIndex] === 'katakana') {
+            else if (current === 'katakana') {
                 currentMojiSet = katakanaList;
             }
-            else if (setList[currentSetIndex] === 'katakana (words)') {
+            else if (current === 'katakana (words)') {
                 currentMojiSet = katakanaWords;
             }
-            else if (setList[currentSetIndex] === 'kanji (hard)') {
+            else if (current === 'kanji (hard)') {
                 currentMojiSet = kanjiListHard;
             }
             else {
                 currentMojiSet = kanjiList;
             }
             shuffledList = shuffleArray([...currentMojiSet]);
-            currentMojiIndex = 0;
             document.getElementById('moji').innerHTML = '...';
             document.getElementById('yomikata').innerHTML = '';
             nextMoji = '';
